@@ -24,9 +24,10 @@ const handleSubmit = async (e) => {
     username,    
     password,
   });
+  localStorage.setItem("user", JSON.stringify(res.data));
 
-  console.log(res);
-  // navigate("/login");
+  // console.log(res);
+  navigate("/");
  } catch (err) {
   setError(err.response.data.message);
  } finally {
