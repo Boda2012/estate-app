@@ -10,6 +10,7 @@ function ProfilePage() {
 
   const { updateUser, currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+ 
 
   const handleLogout = async () => {
     try {
@@ -38,10 +39,10 @@ function ProfilePage() {
               />
             </span>
             <span>
-              Username: <b>John Doe</b>
+              Username: <b>{currentUser.username}</b>
             </span>
             <span>
-              E-mail: <b>john@gmail.com</b>
+              E-mail: <b>{currentUser.email}</b>
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
