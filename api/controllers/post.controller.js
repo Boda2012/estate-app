@@ -35,15 +35,15 @@ export const getPost = async (req, res) => {
   try {
     const post = await prisma.post.findUnique({
       where: { id },
-      // include: {
-      //   postDetail: true,
-      //   user: {
-      //     select: {
-      //       username: true,
-      //       avatar: true,
-      //     },
-      //   },
-      // },
+      include: {
+        postDetail: true,
+        user: {
+          select: {
+            username: true,
+            avatar: true,
+          },
+        },
+      },
     });
 
     // const token = req.cookies?.token;
@@ -78,12 +78,11 @@ export const addPost = async (req, res) => {
   try {
     const newPost = await prisma.post.create({
       data: {
-        ...body,
-        userId: tokenUserId,
-        // .postData
-        // postDetail: {
-        //   create: body.postDetail,
-        // },
+        ...body.postData,
+        userId: tokenUserId,        
+        postDetail: {
+          create: body.postDetail,
+        },
       },
     });
     res.status(200).json(newPost);
